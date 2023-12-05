@@ -12,7 +12,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Threads App Clone',
       theme: ThemeData(
-        primarySwatch: Colors.white,
+        primaryColor: Colors.black,
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(color: Colors.black),
+          bodyMedium: TextStyle(color: Colors.black),
+        ),
+        appBarTheme: const AppBarTheme(
+          color: Colors.white,
+          iconTheme: IconThemeData(color: Colors.black),
+          elevation: 0,
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey, // 선택되지 않은 아이템의 색상을 설정합니다.
+        ),
       ),
       home: const HomeScreen(),
     );
@@ -39,35 +52,63 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Threads App Clone'),
+        backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Image.asset(
+            'assets/threads.png',
+            height: 112, // 로고의 크기를 설정합니다.
+          ),
+        ),
+        centerTitle: true, // 로고 이미지를 중앙에 배치합니다.
+        elevation: 0,
       ),
-      body: ListView.builder(
-        itemCount: 10, // 가짜 데이터의 수
-        itemBuilder: (context, index) {
-          return PostItem(index: index);
-        },
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          const SizedBox(height: 8), // AppBar와 본문 사이에 공간을 추가합니다.
+          Expanded(
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return PostItem(index: index);
+              },
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed, // 애니메이션을 제거합니다.
+        iconSize: 32,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
+            icon: Icon(Icons.add_box), // 포스트 추가 버튼
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: '',
           ),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+        selectedFontSize: 0,
+        unselectedFontSize: 0,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
       ),
     );
   }
