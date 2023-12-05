@@ -122,19 +122,57 @@ class PostItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0, // Card의 그림자를 제거합니다.
+      color: Colors.white, // Card의 배경색을 흰색으로 설정합니다.
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            Text(
-              '게시물 제목 $index',
-              style: const TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
+            const Row(
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundImage:
+                      AssetImage('assets/bee.png'), // 프로필 이미지 경로를 설정하세요.
+                ),
+                SizedBox(width: 8.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'bee',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 4.0),
+                    Text(
+                        'Lorem ipsum dolor sit amet, consectetur \nadipiscing elit. Vestibulum tempus lectur\nvitae imperdiet viverra.'),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(height: 20.0),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/linux.png',
+                    width: 200.0,
+                    height: 200.0,
+                  ),
+                  const SizedBox(width: 8.0),
+                  Image.asset(
+                    'assets/terminal.png',
+                    width: 200.0,
+                    height: 200.0,
+                  ),
+                  // 추가 이미지를 계속 추가할 수 있습니다.
+                ],
               ),
             ),
-            const SizedBox(height: 8.0),
-            const Text('게시물 내용이 여기에 표시됩니다...'),
+            const SizedBox(height: 4.0),
           ],
         ),
       ),
