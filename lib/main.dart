@@ -64,17 +64,14 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
       ),
       backgroundColor: Colors.white,
-      body: Column(
+      body: IndexedStack(
+        index: _selectedIndex,
         children: [
-          const SizedBox(height: 8), // AppBar와 본문 사이에 공간을 추가합니다.
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return PostItem(index: index);
-              },
-            ),
-          ),
+          _buildPage1(),
+          _buildPage2(),
+          _buildPage2(),
+          _buildPage2(),
+          _buildPage2(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -112,6 +109,28 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  Widget _buildPage1() {
+    // 첫 번째 페이지의 구현
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return PostItem(index: index);
+      },
+    );
+  }
+
+  Widget _buildPage2() {
+    // 나머지 페이지의 공통 구현 (또는 각각 별도로 구현)
+    return const Center(
+      child: Text(
+        '🤔',
+        style: TextStyle(
+          fontSize: 64.0,
+        ),
+      ),
+    );
+  }
 }
 
 class PostItem extends StatelessWidget {
@@ -139,7 +158,7 @@ class PostItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'bee',
+                      'bee❓',
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
@@ -158,13 +177,19 @@ class PostItem extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Image.asset(
-                    'assets/linux.png',
+                    'assets/terminal.png',
                     width: 200.0,
                     height: 200.0,
                   ),
                   const SizedBox(width: 8.0),
                   Image.asset(
                     'assets/terminal.png',
+                    width: 200.0,
+                    height: 200.0,
+                  ),
+                  const SizedBox(width: 8.0),
+                  Image.asset(
+                    'assets/linux.png',
                     width: 200.0,
                     height: 200.0,
                   ),
